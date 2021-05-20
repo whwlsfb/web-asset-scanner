@@ -40,6 +40,8 @@ parser.add_argument('-p', '--ports', help="scan ports, default is '%s'" % defaul
 parser.add_argument('-t', '--timeout', help="set timeout, default is 10s",type=int, default=10)
 parser.add_argument('-uo', '--outputUrlsFile', help="url output file name, default is './urls.txt'", default="urls.txt")
 parser.add_argument('-mt', '--maxThread', help="set max thread, default is '200'",type=int, default=200)
+
+
 class Thread(threading.Thread):
     def __init__(self, worker, task_queue, msg_queue, threadpool):
         super(Thread, self).__init__()
@@ -213,7 +215,7 @@ class Scanner:
     
     def writeWebUrl(self, url):
         if (self.webUrlFile == None):
-            self.webUrlFile = open('urls.txt', 'a')
+            self.webUrlFile = open(self.urlOutputFileName, 'a')
         self.webUrlFile.write(url + "\r")
     def Runall(self):
         pass
