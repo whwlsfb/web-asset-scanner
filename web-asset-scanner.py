@@ -33,12 +33,13 @@ OK = 0x0
 FINISH = 0x1
 ERROR = 0x2
 
+defaultPorts = "80,81,82,83,84,88,90,443,8080,8081,8082,8083,8084,8085,8086,8087,8088,8089,8090,3000,5702,5703"
 parser = argparse.ArgumentParser()
-parser.add_argument('-n', '--networks', required=True, help="scan networks, '192.168.1.0'")
-parser.add_argument('-p', '--ports', help="scan ports, '80,443'", default="80,81,82,83,84,88,90,443,8080,8081,8082,8083,8084,8085,8086,8087,8088,8089,8090,3000,5702,5703")
-parser.add_argument('-t', '--timeout', help="set timeout",type=int, default=10)
-parser.add_argument('-uo', '--outputUrlsFile', help='url output file name', default="urls.txt")
-parser.add_argument('-mt', '--maxThread', help="set timeout",type=int, default=200)
+parser.add_argument('-n', '--networks', required=True, help="scan networks, '192.168.1.0/24,192.168.2.0/24'")
+parser.add_argument('-p', '--ports', help="scan ports, default is '%s'" % defaultPorts, default=defaultPorts)
+parser.add_argument('-t', '--timeout', help="set timeout, default is 10s",type=int, default=10)
+parser.add_argument('-uo', '--outputUrlsFile', help="url output file name, default is './urls.txt'", default="urls.txt")
+parser.add_argument('-mt', '--maxThread', help="set max thread, default is '200'",type=int, default=200)
 class Thread(threading.Thread):
     def __init__(self, worker, task_queue, msg_queue, threadpool):
         super(Thread, self).__init__()
