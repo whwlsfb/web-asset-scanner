@@ -1,0 +1,6 @@
+.vscode/
+build/
+dist/
+result*
+urls.txt
+*.spec
